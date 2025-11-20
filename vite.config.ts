@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // SPA routing support for development
+    historyApiFallback: true,
   },
   plugins: [
     react(),
@@ -17,6 +19,16 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  // Support for client-side routing
+  appType: 'spa',
+  // Ensure all routes fallback to index.html for client-side routing
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
     },
   },
 }));
