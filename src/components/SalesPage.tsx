@@ -193,7 +193,7 @@ const SalesPage: React.FC<SalesPageProps> = ({ onPurchase }) => {
 
           {/* CTA Button */}
           <Button
-            onClick={() => window.open('https://pay.kirvano.com/214b9928-eeb5-4bb0-bec0-cdb53644bf40', '_blank')}
+            onClick={() => window.open('https://payt.site/mNCD6Qo', '_blank')}
             className="w-full py-4 bg-[#FF6F00] hover:bg-[#E55A00] text-white font-bold text-lg rounded-xl mb-6"
           >
             OBTER MEU PLANO

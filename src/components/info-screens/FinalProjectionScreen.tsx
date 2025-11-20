@@ -1,14 +1,32 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+
 interface FinalProjectionScreenProps {
   onContinue: () => void;
   onBack: () => void;
 }
+
 const FinalProjectionScreen: React.FC<FinalProjectionScreenProps> = ({
   onContinue,
   onBack
 }) => {
+  // Get current date and calculate next month (4 weeks)
+  const getProjectionDate = () => {
+    const currentDate = new Date();
+    const futureDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+    
+    const months = [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+    
+    const monthName = months[futureDate.getMonth()];
+    const year = futureDate.getFullYear();
+    
+    return `${monthName}, ${year}`;
+  };
+
   return <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-4">
@@ -40,7 +58,7 @@ const FinalProjectionScreen: React.FC<FinalProjectionScreenProps> = ({
           </p>
 
           {/* Projected Date */}
-          <p className="text-2xl font-bold text-primary underline mb-8">Setembro, 2025</p>
+          <p className="text-2xl font-bold text-primary underline mb-8">{getProjectionDate()}</p>
 
           {/* Projection Chart */}
           <Card className="bg-card p-6 mb-8 h-64">

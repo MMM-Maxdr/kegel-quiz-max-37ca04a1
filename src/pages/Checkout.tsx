@@ -12,7 +12,7 @@ import ProfileSummaryScreen from '@/components/info-screens/ProfileSummaryScreen
 import FinalProjectionScreen from '@/components/info-screens/FinalProjectionScreen';
 import { toast } from 'sonner';
 
-const Index = () => {
+const Checkout = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [showProcessing, setShowProcessing] = useState(false);
@@ -159,7 +159,7 @@ const Index = () => {
     },
     {
       step: 13,
-      question: "Eu evito sexo porque me preocupo com meu desempenho",
+      question: "Você evita sexo porque me preocupa com meu desempenho",
       subtitle: "Você se identifica com esta afirmação?",
       options: [
         { id: 'sim', text: 'Sim', emoji: '😊' },
@@ -431,7 +431,7 @@ const Index = () => {
 
   const handlePurchase = () => {
     toast.success('Redirecionando para o pagamento...');
-    window.open('https://payt.site/mNCD6Qo', '_blank');
+    window.open('https://pay.cakto.com.br/acajrfg_657669', '_blank');
   };
 
   if (showSalesPage) {
@@ -535,4 +535,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Checkout;
