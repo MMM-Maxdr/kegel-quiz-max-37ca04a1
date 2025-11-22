@@ -431,7 +431,7 @@ const Index = () => {
 
   const handlePurchase = () => {
     toast.success('Redirecionando para o pagamento...');
-    window.open('https://pay.cakto.com.br/acajrfg_657669', '_blank');
+    window.open('https://payt.site/mNCD6Qo', '_blank');
   };
 
   if (showSalesPage) {
