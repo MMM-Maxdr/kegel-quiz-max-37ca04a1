@@ -84,11 +84,11 @@ const SalesPage: React.FC<SalesPageProps> = ({ onPurchase }) => {
       <div className="fixed top-0 left-0 right-0 bg-[#FF6F00] p-4 z-50">
         <div className="flex items-center justify-between max-w-md mx-auto">
           <span className="font-semibold">O desconto expira em: {formatTime(timeLeft)}</span>
-          <Button 
-            onClick={onPurchase}
+          <Button
+            asChild
             className="bg-white text-[#FF6F00] hover:bg-gray-100 font-bold px-4 py-1 rounded"
           >
-            OBTER -50%
+            <a href="https://payt.site/mNCD6Qo" target="_blank" rel="noopener noreferrer">OBTER -50%</a>
           </Button>
         </div>
       </div>
@@ -193,10 +193,10 @@ const SalesPage: React.FC<SalesPageProps> = ({ onPurchase }) => {
 
           {/* CTA Button */}
           <Button
-            onClick={() => window.open('https://payt.site/mNCD6Qo', '_blank')}
+            asChild
             className="w-full py-4 bg-[#FF6F00] hover:bg-[#E55A00] text-white font-bold text-lg rounded-xl mb-6"
           >
-            OBTER MEU PLANO
+            <a href="https://payt.site/mNCD6Qo" target="_blank" rel="noopener noreferrer">OBTER MEU PLANO</a>
           </Button>
 
           {/* Security & Payment */}
