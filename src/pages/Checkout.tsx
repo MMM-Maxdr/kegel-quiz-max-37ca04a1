@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import QuestionnaireStep from '@/components/QuestionnaireStep';
 import ProcessingScreen from '@/components/ProcessingScreen';
 import EmailCapture from '@/components/EmailCapture';
@@ -27,6 +27,13 @@ const Checkout = () => {
   const [showComparison, setShowComparison] = useState(false);
   const [showProfileSummary, setShowProfileSummary] = useState(false);
   const [showFinalProjection, setShowFinalProjection] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sales') === '1' || params.get('skip') === '1') {
+      setShowSalesPage(true);
+    }
+  }, []);
 
   const questionnaireData = [
     {
@@ -435,7 +442,7 @@ const Checkout = () => {
   };
 
   if (showSalesPage) {
-    return <SalesPage onPurchase={handlePurchase} />;
+    return <SalesPage onPurchase={handlePurchase} checkoutHref={"https://pay.cakto.com.br/acajrfg_657669"} />;
   }
 
   if (showEmailCapture) {
