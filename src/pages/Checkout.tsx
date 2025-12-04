@@ -1,39 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import QuestionnaireStep from '@/components/QuestionnaireStep';
-import ProcessingScreen from '@/components/ProcessingScreen';
-import EmailCapture from '@/components/EmailCapture';
+import React from 'react';
 import SalesPage from '@/components/SalesPage';
-import SocialProofScreen from '@/components/info-screens/SocialProofScreen';
-import PelvicFloorScreen from '@/components/info-screens/PelvicFloorScreen';
-import DurationBenefitScreen from '@/components/info-screens/DurationBenefitScreen';
-import StatisticsScreen from '@/components/info-screens/StatisticsScreen';
-import ComparisonScreen from '@/components/info-screens/ComparisonScreen';
-import ProfileSummaryScreen from '@/components/info-screens/ProfileSummaryScreen';
-import FinalProjectionScreen from '@/components/info-screens/FinalProjectionScreen';
-import { toast } from 'sonner';
+import QuizFlow from '@/components/QuizFlow';
 
 const Checkout = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [answers, setAnswers] = useState<Record<number, string[]>>({});
-  const [showProcessing, setShowProcessing] = useState(false);
-  const [showEmailCapture, setShowEmailCapture] = useState(false);
-  const [showSalesPage, setShowSalesPage] = useState(false);
-  
-  // Info screen states
-  const [showSocialProof, setShowSocialProof] = useState(false);
-  const [showPelvicFloor, setShowPelvicFloor] = useState(false);
-  const [showDurationBenefit, setShowDurationBenefit] = useState(false);
-  const [showStatistics, setShowStatistics] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
-  const [showProfileSummary, setShowProfileSummary] = useState(false);
-  const [showFinalProjection, setShowFinalProjection] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('sales') === '1' || params.get('skip') === '1') {
-      setShowSalesPage(true);
-    }
-  }, []);
 
   const questionnaireData = [
     {
@@ -436,110 +405,7 @@ const Checkout = () => {
     setShowSalesPage(true);
   };
 
-  const handlePurchase = () => {
-    toast.success('Redirecionando para o pagamento...');
-    window.open('https://pay.cakto.com.br/acajrfg_657669', '_blank');
-  };
-
-  if (showSalesPage) {
-    return <SalesPage onPurchase={handlePurchase} checkoutHref={"https://pay.cakto.com.br/acajrfg_657669"} />;
-  }
-
-  if (showEmailCapture) {
-    return <EmailCapture onSubmit={handleEmailSubmit} />;
-  }
-
-  if (showProcessing) {
-    return <ProcessingScreen onComplete={handleProcessingComplete} />;
-  }
-
-  // Info screens
-  if (showSocialProof) {
-    return (
-      <SocialProofScreen
-        onContinue={handleSocialProofContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showPelvicFloor) {
-    return (
-      <PelvicFloorScreen
-        onContinue={handlePelvicFloorContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showDurationBenefit) {
-    return (
-      <DurationBenefitScreen
-        onContinue={handleDurationBenefitContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showStatistics) {
-    return (
-      <StatisticsScreen
-        onContinue={handleStatisticsContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showComparison) {
-    return (
-      <ComparisonScreen
-        onContinue={handleComparisonContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showProfileSummary) {
-    return (
-      <ProfileSummaryScreen
-        onContinue={handleProfileSummaryContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  if (showFinalProjection) {
-    return (
-      <FinalProjectionScreen
-        onContinue={handleFinalProjectionContinue}
-        onBack={handleBack}
-      />
-    );
-  }
-
-  const currentStepData = questionnaireData.find(q => q.step === currentStep);
-
-  if (!currentStepData) {
-    return <div>Erro: Etapa não encontrada</div>;
-  }
-
-  return (
-    <QuestionnaireStep
-      step={currentStep}
-      totalSteps={questionnaireData.length}
-      question={currentStepData.question}
-      subtitle={currentStepData.subtitle}
-      options={currentStepData.options}
-      selectedOptions={answers[currentStep] || []}
-      multiSelect={currentStepData.multiSelect}
-      hasTestimonials={currentStepData.hasTestimonials}
-      hasGif={currentStepData.hasGif}
-      gifUrl={currentStepData.gifUrl}
-      onSelect={(optionId) => handleOptionSelect(currentStep, optionId)}
-      onNext={handleNext}
-      onBack={handleBack}
-    />
-  );
+  return <QuizFlow renderSalesPage={() => <SalesPage onPurchase={() => {}} checkoutHref={'https://pay.cakto.com.br/acajrfg_657669'} />} />
 };
 
 export default Checkout;
